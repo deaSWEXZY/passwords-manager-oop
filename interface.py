@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from generator import PasswordGeneration
+from PIL import Image, ImageTk
 
 # --- DESIGN CONSTANTS ---
 BG_COLOR = "#242424"      # Deep matte gray background
@@ -11,22 +12,25 @@ GREEN = "#06D6A0"
 
 class AppInterface:
     def __init__(self, data_manager):
-
-        self.data_manager = data_manager
-
-        #Window
+        # Window
         self.window = Tk()
         self.window.title("Password Manager")
         self.window.config(padx=50, pady=50, bg=BG_COLOR)
+
+        # Canvas
+        self.canvas = Canvas(width=200, height=200, bg=BG_COLOR, highlightthickness=0)
 
         #Image(title)
         self.title_icon = PhotoImage(file="title_logo.png")
         self.window.iconphoto(False, self.title_icon)
 
         #Setting up canvas
+        raw_image = Image.open("logo.png")
+        resized_image = raw_image.resize((180, 180), Image.Resampling.LANCZOS)
+        self.logo_img = ImageTk.PhotoImage(resized_image)
         self.canvas = Canvas(width=200, height=200, bg=BG_COLOR, highlightthickness=0)
         self.logo_image = PhotoImage(file="logo.png")
-        self.canvas.create_image(100, 100, image=self.logo_image)
+        self.canvas.create_image(90, 90, image=self.logo_img)
         self.canvas.grid(column=1, row=0)
 
         #Labels
