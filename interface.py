@@ -12,6 +12,9 @@ GREEN = "#06D6A0"
 
 class AppInterface:
     def __init__(self, data_manager):
+        
+        self.data_manager = data_manager
+        
         # Window
         self.window = Tk()
         self.window.title("Password Manager")
