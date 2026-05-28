@@ -104,3 +104,5 @@ class AppInterface:
             messagebox.showinfo(title=website, message=f"Email: {result['email']}\nPassword: {result['password']}")
         else:
             messagebox.showinfo(title="Error", message=f"No details for {website} exist.")
+        self.website_text_box.delete(0, END)
+        self.email_text_box.delete(0, END)
